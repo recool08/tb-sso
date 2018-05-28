@@ -101,9 +101,31 @@
 		
 	</dependencies>
 	<build>
-		<!-- 配置插件 -->
-		<!-- 
+		
 		<plugins>
+			
+			<!-- SpringBoot 打包插件 -->
+			<plugin>
+	        	<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--版本-->
+				<version>1.4.2.RELEASE</version>	<!-- 只能用“1.4.2.RELEASE”这个版本 -->
+				<configuration>
+			        <mainClass>com.taotao.sso.Main</mainClass>
+			        <includeSystemScope>true</includeSystemScope>
+			        <!-- <layout>jar</layout> -->
+				</configuration>
+				<executions>
+			        <execution>
+			            <goals>
+			                <goal>repackage</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+			
+			<!-- 配置插件 -->
+			<!-- 
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -115,8 +137,117 @@
 					<password>tomcat</password>
 				</configuration>
 			</plugin>
+		 	-->
 		</plugins>
-		 -->
+		
+		<!-- 
+		<resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/application*.yml</include>
+                    <include>**/application*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <excludes>
+                    <exclude>**/application*.yml</exclude>
+                    <exclude>**/application*.properties</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+        </resources>
+         -->
+		
+		<!-- 
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>jsp/*</exclude>
+				</excludes>
+            </resource>
+            
+			<!- - 打包时将jsp文件拷贝到META-INF目录下- ->
+			<resource>
+				<!- - 指定resources插件处理哪个目录下的资源文件 - ->
+				<directory>src/main/resources</directory>
+					<!- -注意此次必须要放在此目录下才能被访问到- ->
+				<targetPath>resources/WEB-INF</targetPath>
+				<includes>
+					<include>**/**</include>
+				</includes>
+			</resource>
+			
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+						<include>**/**</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			
+			<resource>
+				<directory>src/main/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		-->
+		
+		<!-- 
+		<resources>  
+            <resource>  
+                <directory>${basedir}/src/main/resources</directory>  
+                <includes>  
+                    <include>**/**</include>  
+                </includes>  
+                <filtering>false</filtering>  
+            </resource>  
+            <resource>  
+                <directory>${basedir}/src/main/webapp</directory>  
+                <targetPath>META-INF/resources</targetPath>  
+                <includes>  
+                    <include>**/**</include>  
+                </includes>  
+            </resource>  
+  
+        </resources>  
+		-->
+		
+		<!-- 
+		<resources>
+			<resource>
+		         <directory>src/main/webapp</directory>
+		         <targetPath>META-INF/resources</targetPath>
+		         <includes>
+		            <include>**/**</include>
+		         </includes>
+		     </resource>
+        </resources>
+		-->
+				
+		<!-- 
+		<resources>
+            <resource>  
+                <directory>/src/main/resources</directory>  
+                <includes>  
+                    <include>**/**</include>  
+                </includes>  
+                <filtering>false</filtering>  
+            </resource>  
+        </resources>
+        -->
 	</build>
 
 </project>
